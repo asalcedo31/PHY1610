@@ -1,0 +1,10 @@
+To compile the code:
+g++ -std=c++11 computing_func.cpp -c -o computing_func.o
+g++ -std=c++11 a1.cpp -c -o a1.o
+g++ -std=c++11 a1.o computing_func.o -o a1
+
+To run the code:
+
+./a1
+
+Compiled with g++ 5.4.0 on ubuntu 16.04.5
