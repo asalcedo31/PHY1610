@@ -7,7 +7,7 @@ CXXFLAGS = -std=c++11
 all: myAnts
 
 #compile final executable
-myAnts: initialization.o time_0.o time_step.o myAnts.o
+myAnts: initialization.o time_0.o time_step.o deallocation.o myAnts.o
 	${CXX} ${CXXFLAGS} initialization.o time_0.o time_step.o myAnts.o -o myAnts
 
 #compile initialization module
@@ -21,11 +21,14 @@ time_0.o: time_0.cc
 #compile the module for a single time step after the first
 time_step.o: time_step.cc
 	${CXX} ${CXXFLAGS} time_step.cc -c -o time_step.o
+#compile the module to deallocate arrays 
+deallocation.o: deallocation.cc
+	${CXX} ${CXXFLAGS} deallocation.cc -c -o deallocation.o
 
 #compile module with main function 
-myAnts.o: myAnts.cc initialization.h time_0.h time_step.h
+myAnts.o: myAnts.cc initialization.h time_0.h time_step.h deallocation.h
 	${CXX} ${CXXFLAGS} myAnts.cc -c -o myAnts.o
 
 #remove all compiled files
 clean:
-	rm -f myAnts initialization.o time_0.o time_step.o myAnts.o
+	rm -f myAnts initialization.o time_0.o time_step.o myAnts.o deallocation.o
